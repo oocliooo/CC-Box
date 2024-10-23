@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闪耀盒子美容计划定制</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #ffe4e1;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            background-color: #ff1493;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 50px;
+            border: 2px solid #ff69b4;
+            border-radius: 12px;
+            background-color: #fff0f5;
+            transition: background-color 0.3s, border-color 0.3s;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .checkbox-container:hover {
+            border-color: #ff1493;
+            background-color: #ffe4e1;
+        }
+        
+        .checkbox-container input[type="checkbox"]:checked + span {
+            font-weight: bold;
+            color: #ff1493;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 80%;
+            height: 12px;
+            background: #ff69b4;
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #ff1493;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        output {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>闪耀盒子美容计划定制</h1>
+
+<div class="input-group">
+    <label for="height">身高 (cm)</label>
+    <div class="range-container">
+        <input type="range" id="height" min="140" max="200" step="1" value="170" oninput="this.nextElementSibling.value = this.value" required>
+        <output>170</output>
+    </div>
+</div>
+
+<div class="input-group">
+    <label for="weight">体重 (kg)</label>
+    <div class="range-container">
+        <input type="range" id="weight" min="40" max="120" step="1" value="60" oninput="this.nextElementSibling.value = this.value" required>
+        <output>60</output>
+    </div>
+</div>
+
+<div class="input-group">
+    <label for="gender">性别</label>
+    <select id="gender" required>
+        <option value="" disabled selected>请选择性别</option>
+        <option value="male">男</option>
+        <option value="female">女</option>
+        <option value="other">其他</option>
+    </select>
+</div>
+
+<div class="input-group">
+    <label for="age">年龄</label>
+    <input type="range" id="age" min="18" max="100" step="1" value="25" oninput="this.nextElementSibling.value = this.value" required>
+    <output>25</output>
+</div>
+
+<div class="input-group">
+    <label for="allergies">过敏史</label>
+    <input type="text" id="allergies" placeholder="例如：花生，花粉">
+</div>
+
+<div class="input-group">
+    <label for="disease">疾病史</label>
+    <input type="text" id="disease" placeholder="例如：糖尿病，高血压">
+</div>
+
+<div class="input-group">
+    <label for="health-aspect">想要改善的问题</label>
+    <div class="checkbox-group">
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem1" value="瘦身">
+            <span>瘦身</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem2" value="美白焕肤">
+            <span>美白焕肤</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem3" value="抗老">
+            <span>抗老</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem4" value="保湿">
+            <span>保湿</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem5" value="水油平衡">
+            <span>水油平衡</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="wantProblem6" value="增强免疫力">
+            <span>增强免疫力</span>
+        </label>
+    </div>
+</div>
+
+<div class="input-group">
+    <label for="current-problems">现有问题</label>
+    <div class="checkbox-group">
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem1" value="皮肤干燥">
+            <span>皮肤干燥</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem2" value="痘印">
+            <span>痘印</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem3" value="敏感肌">
+            <span>敏感肌</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem4" value="皱纹">
+            <span>皱纹</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem5" value="体脂率">
+            <span>体脂率</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem6" value="黑色素斑">
+            <span>黑色素斑</span>
+        </label>
+    </div>
+</div>
+
+<button class="button" onclick="generatePlan()">生成计划</button>
+<p id="loading-message" style="display: none; color: red;">正在生成中...</p>
+    <div class="product-list" id="product-list" style="display: none;">
+        <h2>闪耀盒子美容计划</h2>
+        <div id="products"></div>
+        <div class="total-price" id="total-price"></div>
+        <button class="button" onclick="purchase()">Purchase</button>
+    </div>
+
+</div>
+
+<script>
+    async function generatePlan() {
+        const height = document.getElementById("height").value;
+        const weight = document.getElementById("weight").value;
+        const gender = document.getElementById("gender").value;
+        const age = document.getElementById("age").value;
+        const allergies = document.getElementById("allergies").value;
+        const diseaseHistory = document.getElementById("disease").value;
+
+        const healthAspect = [...document.querySelectorAll('input[type="checkbox"]:checked[id^="wantProblem"]')]
+            .map(cb => cb.value)
+            .join(', ');
+
+        const currentProblems = [...document.querySelectorAll('input[type="checkbox"]:checked[id^="problem"]')]
+            .map(cb => cb.value)
+            .join(', ');
+
+        const prompt = `
+            用户健康数据：
+            - 身高: ${height} cm
+            - 体重: ${weight} kg
+            - 性别: ${gender}
+            - 年龄: ${age}
+            - 过敏史: ${allergies}
+            - 疾病史: ${diseaseHistory}
+            - 想要改善的健康方面: ${healthAspect}
+            - 现有问题: ${currentProblems}
+            
+            基于以上信息，请推荐适合的补品和外用产品（包括化学名称、使用方式、每日剂量)。
+        `;
+        document.getElementById("loading-message").style.display = "block";
+        try {
+            const response = await fetch('/generate-plan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const data = await response.json();
+            localStorage.setItem('gptProducts', data.products);
+            window.location.href = '/plan';
+        } catch (error) {
+            console.error("Error calling the API:", error);
+            alert("There was an error generating the plan. Please try again.");
+        }
+    }
+</script>
+</body>
+</html>
