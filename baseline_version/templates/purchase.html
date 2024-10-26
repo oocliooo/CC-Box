@@ -7,26 +7,45 @@
     <style>
         body {
             font-family: 'Comic Sans MS', sans-serif;
-            background-color: #ffe4e1;
-            padding: 20px;
+            background-image: url('https://www.optimumpmr.com/wp-content/uploads/2022/02/AdobeStock_190889654-scaled.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
             text-align: center;
-            color: #ff69b4;
+            color: #A0522D;
         }
+        
         .product-list {
             margin: 20px auto;
             max-width: 600px;
-            background-color: #fff;
+            background-color: #ffffff; /* 白色背景 */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+        
         .product-item {
             margin-bottom: 10px;
+            border: 1px solid #e6d7f2; /* 浅薰衣草紫边框 */
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f9f0fc; /* 浅紫色背景 */
         }
+        
         .button {
-            background-color: #ff1493;
+            background-color: #d1c2e6; /* 浅薰衣草紫按钮 */
             color: white;
             padding: 10px;
             border: none;
@@ -37,7 +56,7 @@
     </style>
 </head>
 <body>
-
+<div class="container">
 <h1>确认购买</h1>
 
 <div class="product-list" id="product-list">
@@ -73,6 +92,6 @@
         window.location.href = '/';
     }
 </script>
-
+</div>
 </body>
 </html>

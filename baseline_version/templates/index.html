@@ -23,13 +23,13 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
             border-radius: 12px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
-            color: #ff69b4;
+            color: #A0522D; /* Soft brown */
         }
         .input-group {
             margin-bottom: 15px;
@@ -37,15 +37,17 @@
         label {
             display: block;
             margin-bottom: 5px;
+            color: #4B3D3D; /* Soft gray */
         }
         input, select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #D3CFCF; /* Light gray */
             border-radius: 5px;
+            background-color: #F9F5F5; /* Very light gray */
         }
         .button {
-            background-color: #ff1493;
+            background-color: #C8A2C8; /* Soft mauve */
             color: white;
             padding: 10px;
             border: none;
@@ -64,34 +66,48 @@
             justify-content: center;
             width: 130px;
             height: 50px;
-            border: 2px solid #ff69b4;
+            border: 2px solid #e6d7f2; /* Soft lavender */
             border-radius: 12px;
-            background-color: #fff0f5;
+            background-color: #f3eefc; /* Light lavender */
             transition: background-color 0.3s, border-color 0.3s;
             cursor: pointer;
             user-select: none;
         }
         
         .checkbox-container:hover {
-            border-color: #ff1493;
-            background-color: #ffe4e1;
+            border-color: #D3A2D3; /* Light mauve on hover */
+            background-color: #f3eefc; /* Lighter lavender */
         }
         
         .checkbox-container input[type="checkbox"]:checked + span {
             font-weight: bold;
-            color: #ff1493;
+            color: #A0522D; /* Soft brown */
         }
-
+    
         .range-container {
             display: flex;
             align-items: center;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         input[type="range"] {
             -webkit-appearance: none;
             width: 80%;
             height: 12px;
-            background: #ff69b4;
+            background: #D3CFCF; /* Light gray */
             border-radius: 10px;
             outline: none;
             cursor: pointer;
@@ -103,7 +119,7 @@
             appearance: none;
             width: 24px;
             height: 24px;
-            background: #ff1493;
+            background: #C8A2C8; /* Soft mauve */
             border-radius: 50%;
             cursor: pointer;
         }
@@ -111,9 +127,8 @@
         output {
             font-size: 18px;
             font-weight: bold;
-            color: #ff69b4;
+            color: #A0522D; /* Soft brown */
         }
-
     </style>
 </head>
 <body>
@@ -154,6 +169,18 @@
 </div>
 
 <div class="input-group">
+    <label for="skin-type">肤质</label>
+    <select id="skin-type" required>
+        <option value="" disabled selected>请选择肤质</option>
+        <option value="中性">中性</option>
+        <option value="油">油</option>
+        <option value="干">干</option>
+        <option value="混油">混油</option>
+        <option value="混干">混干</option>
+    </select>
+</div>
+
+<div class="input-group">
     <label for="allergies">过敏史</label>
     <input type="text" id="allergies" placeholder="例如：花生，花粉">
 </div>
@@ -164,7 +191,7 @@
 </div>
 
 <div class="input-group">
-    <label for="health-aspect">想要改善的问题</label>
+    <label for="health-aspect">想要改善的方面</label>
     <div class="checkbox-group">
         <label class="checkbox-container">
             <input type="checkbox" id="wantProblem1" value="瘦身">
@@ -183,44 +210,19 @@
             <span>女性调养</span>
         </label>
     </div>
+    <button class="button" onclick="showCurrentProblems()">确认选择</button>
 </div>
 
-<div class="input-group">
-    <label for="current-problems">现有问题</label>
-    <div class="checkbox-group">
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem1" value="皮肤干燥">
-            <span>皮肤干燥</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem2" value="痘印">
-            <span>痘印</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem3" value="敏感肌">
-            <span>敏感肌</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem4" value="皱纹">
-            <span>皱纹</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem5" value="体脂率">
-            <span>体脂率</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem6" value="月经不调">
-            <span>月经不调</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="problem7" value="浮肿垮脸">
-            <span>浮肿垮脸</span>
-        </label>
-    </div>
+<div class="input-group" id="current-problems-group" style="display: none;">
+    <label for="current-problems">想要改善的问题</label>
+    <div class="checkbox-group" id="current-problems-checkboxes"></div>
 </div>
 
-<button class="button" onclick="generatePlan()">生成计划</button>
-<p id="loading-message" style="display: none; color: red;">正在生成中...</p>
+<button class="button" onclick="generatePlan()" style="display: none;">生成计划</button>
+<div id="loading-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="loader"></div>
+    <p style="color: red; margin-top: 10px;">正在生成你的变美计划...</p>
+</div>
     <div class="product-list" id="product-list" style="display: none;">
         <h2>闪耀盒子美容计划</h2>
         <div id="products"></div>
@@ -231,11 +233,65 @@
 </div>
 
 <script>
+    const currentProblems = {
+        '瘦身': [
+            '消水肿',
+            '降体脂',
+            '提高基础代谢'
+        ],
+        '美白焕肤': [
+            '祛斑',
+            '祛痘',
+            '亮肤'
+        ],
+        '抗老': [
+            '祛皱',
+            '紧致提拉',
+            '改善肤色'
+        ],
+        '女性调养': [
+            '月经调理',
+            '内分泌调理',
+            '补气血'
+        ]
+    };
+
+    function showCurrentProblems() {
+        const selectedProblems = Array.from(document.querySelectorAll('.checkbox-container input:checked')).map(input => input.value);
+        const currentProblemsDiv = document.getElementById('current-problems-checkboxes');
+        currentProblemsDiv.innerHTML = ''; // 清空现有问题选项
+    
+        const confirmButton = document.querySelector('.button[onclick="showCurrentProblems()"]'); // 确认选择按钮
+        const generatePlanButton = document.querySelector('.button[onclick="generatePlan()"]'); // 生成计划按钮
+    
+        if (selectedProblems.length > 0) {
+            selectedProblems.forEach(problem => {
+                if (currentProblems[problem]) {
+                    currentProblems[problem].forEach(option => {
+                        currentProblemsDiv.innerHTML += `
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="${option}">
+                                <span>${option}</span>
+                            </label>
+                        `;
+                    });
+                }
+            });
+            document.getElementById('current-problems-group').style.display = 'block'; // 显示现有问题部分
+            
+            confirmButton.style.display = 'none';
+            generatePlanButton.style.display = 'block';
+        } else {
+            alert("请至少选择一个想要改善的问题。");
+        }
+    }
+
     async function generatePlan() {
         const height = document.getElementById("height").value;
         const weight = document.getElementById("weight").value;
         const gender = document.getElementById("gender").value;
         const age = document.getElementById("age").value;
+        const skinType = document.getElementById("skin-type").value;
         const allergies = document.getElementById("allergies").value;
         const diseaseHistory = document.getElementById("disease").value;
 
@@ -243,7 +299,7 @@
             .map(cb => cb.value)
             .join(', ');
 
-        const currentProblems = [...document.querySelectorAll('input[type="checkbox"]:checked[id^="problem"]')]
+        const currentProblems = [...document.querySelectorAll('#current-problems-group input[type="checkbox"]:checked')]
             .map(cb => cb.value)
             .join(', ');
 
@@ -253,6 +309,7 @@
             - 体重: ${weight} kg
             - 性别: ${gender}
             - 年龄: ${age}
+            - 肤质: ${skinType}
             - 过敏史: ${allergies}
             - 疾病史: ${diseaseHistory}
             - 想要改善的健康方面: ${healthAspect}
@@ -300,7 +357,8 @@
             ...
 
         `;
-        document.getElementById("loading-message").style.display = "block";
+        console.log(prompt);
+        document.getElementById("loading-container").style.display = "flex";
         try {
             const response = await fetch('/generate-plan', {
                 method: 'POST',
