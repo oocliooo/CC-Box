@@ -10,3 +10,8 @@ run python app.py 点击Running on的link打开网页
 5. purchase.html研究付款方式，同时也要连接会database
 6. 新增购物车页面
 7. 完善UI设计，图片/小组件（后期有产品图片的时候慢慢设计）
+
+
+现有bug：
+
+1. gpt output slicing有的时候不对，保证每次output的格式可以准确fit到box里

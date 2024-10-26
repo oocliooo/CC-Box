@@ -168,16 +168,8 @@
             <span>抗老</span>
         </label>
         <label class="checkbox-container">
-            <input type="checkbox" id="wantProblem4" value="保湿">
-            <span>保湿</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="wantProblem5" value="水油平衡">
-            <span>水油平衡</span>
-        </label>
-        <label class="checkbox-container">
-            <input type="checkbox" id="wantProblem6" value="增强免疫力">
-            <span>增强免疫力</span>
+            <input type="checkbox" id="wantProblem4" value="女性调养">
+            <span>女性调养</span>
         </label>
     </div>
 </div>
@@ -206,8 +198,12 @@
             <span>体脂率</span>
         </label>
         <label class="checkbox-container">
-            <input type="checkbox" id="problem6" value="黑色素斑">
-            <span>黑色素斑</span>
+            <input type="checkbox" id="problem6" value="月经不调">
+            <span>月经不调</span>
+        </label>
+        <label class="checkbox-container">
+            <input type="checkbox" id="problem7" value="浮肿垮脸">
+            <span>浮肿垮脸</span>
         </label>
     </div>
 </div>
@@ -252,22 +248,43 @@
             - 现有问题: ${currentProblems}
             
             基于以上信息，请基于我们现有的产品推荐适合的补品。
-            我们的产品有：
-            1. 胶原蛋白条
-            2. 维生素C片
-            3. 透明质酸精华
-            4. Omega3软胶囊
-            5. 葡萄籽胶囊
-            6. 钙片
-            7. 镁片
-            8. 维生素C片
+            根据不同的需求，我们有以下产品：
+            美白换肤：
+            1. 维生素C
+            2. 传明酸
+            3. 维生素E
+            4. 胶原蛋白肽
+            5. 硫辛酸
+            6. 葡萄籽提取物
+            瘦身塑形：
+            1. 左旋肉碱
+            2. 共轭亚油酸（CLA）
+            3. 绿茶提取物胶囊
+            4. 纤维补充剂
+            5. 益生菌粉
+            抗老：
+            1. 辅酶Q10
+            2. 胶原蛋白肽
+            3. Omega-3鱼油
+            4. 透明质酸
+            5. 视黄醇
+            6. 谷胱甘肽
+            7. 钙镁锌+D3
+            女性调养：
+            1. 月见草油
+            2. 蔓越莓胶囊
+            3. 祛湿丸
+            4. 钙镁锌+D3
+            5. 当归补血丸
+            6. 丹参片
+            7. 黄芪提取物
 
-            以该格式生成计划，除了推荐列表不要包括其他的文字：\n
-            补品1 剂量：1次/天
+            以该格式生成计划，每个需求推荐1-2种补品，不要重复，除了推荐列表不要包括其他的文字：\n
+            补品1名字 剂量：1次/天
             主要功效：...
-            补品2 剂量：2次/天
+            补品2名字 剂量：2次/天
             主要功效：...
-            补品3 剂量：3次/天
+            补品3名字 剂量：3次/天
             主要功效：...
             ...
 
