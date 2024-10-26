@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <a href="/profile" class="profile-icon" title="查看个人资料" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: #ff1493;">
+        <i class="fa-regular fa-circle-user"></i>
+    </a>
     <title>美容计划</title>
     <style>
         body {
@@ -23,6 +27,20 @@
         }
         .product-item {
             margin-bottom: 10px;
+            border: 1px solid #ff69b4;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff0f5;
+        }
+        .button {
+            background-color: #ff1493;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -32,8 +50,8 @@
 
 <div class="plan-container">
     <h2>推荐产品</h2>
-    <div id="products">
-    </div>
+    <div id="products"></div>
+    <button class="button" onclick="confirmPurchase()">确认购买</button>
 </div>
 
 <script>
@@ -42,12 +60,39 @@
 
         if (gptProducts) {
             const productsDiv = document.getElementById('products');
-            const productItems = gptProducts.split('\n').filter(item => item.trim() !== '');
+            const productItems = gptProducts.trim().split('\n\n');
             productItems.forEach(item => {
-                productsDiv.innerHTML += `<div class="product-item">${item}</div>`;
+                const lines = item.split('\n');
+                const productNameAndDosage = lines[0].trim();
+                const efficacy = lines[1].trim();
+    
+                const [productName, dosage] = productNameAndDosage.split(' 剂量：');
+    
+                productsDiv.innerHTML += `
+                    <div class="product-item">
+                        <label>
+                            <input type="checkbox" value="${productName}|${dosage}|${efficacy}">
+                            <strong>${productName}</strong>（${dosage}）<br>
+                            <small>${efficacy}</small>
+                        </label>
+                    </div>
+                `;
             });
         }
     });
+
+    function confirmPurchase() {
+        const selectedProducts = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
+        if (selectedProducts.length === 0) {
+            alert("请至少选择一个产品。");
+            return;
+        }
+
+        // 将选中的产品保存到 localStorage, 后续请连上后端实现购买逻辑
+        localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+        // 跳转到确认购买页面
+        window.location.href = '/purchase';
+    }
 </script>
 
 </body>

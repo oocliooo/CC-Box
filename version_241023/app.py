@@ -34,5 +34,13 @@ def generate_plan():
 def plan():
     return render_template('plan.html')
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/purchase')
+def purchase():
+    return render_template('purchase.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
