@@ -4,7 +4,7 @@ from openai import AzureOpenAI
 app = Flask(__name__)
 
 client = AzureOpenAI(
-    api_key="b9e6f30f3ab7419db88dec0fd2b73b99",
+    api_key="YOUR_API_KEY",
     api_version="2023-05-15",
     azure_endpoint="https://hkust.azure-api.net"
 )
