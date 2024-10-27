@@ -4,14 +4,18 @@ from openai import AzureOpenAI
 app = Flask(__name__)
 
 client = AzureOpenAI(
-    api_key="YOUR_API_KEY",
+    api_key="2b27fb0a4cfb4e398463ff91f2cd6ff3",
     api_version="2023-05-15",
     azure_endpoint="https://hkust.azure-api.net"
 )
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('intro.html')
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
 
 @app.route('/generate-plan', methods=['POST'])
 def generate_plan():
