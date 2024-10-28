@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <a href="/profile" class="profile-icon" title="查看个人资料" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: #ff1493;">
-        <i class="fa-regular fa-circle-user"></i>
-    </a>
     <title>美容计划</title>
     <style>
         body {
@@ -44,6 +41,15 @@
             border-radius: 5px;
             padding: 10px;
             background-color: #f3eefc; /* 浅紫色背景 */
+            display: flex; /* 使用 flexbox 布局 */
+            align-items: center; /* 垂直居中对齐 */
+        }
+
+        .product-item img {
+            width: 50px; /* 设置图片宽度 */
+            height: 50px; /* 设置图片高度 */
+            margin-right: 10px; /* 图片和文本之间的间距 */
+            border-radius: 5px; /* 图片圆角 */
         }
         
         .button {
@@ -80,11 +86,15 @@
                 const lines = item.split('\n');
                 const productNameAndDosage = lines[0].trim();
                 const efficacy = lines[1].trim();
-    
+
                 const [productName, dosage] = productNameAndDosage.split(' 剂量：');
-    
+
+                // 假设产品名称与图片的对应关系
+                const productImageUrl = getProductImageUrl(productName); // 获取对应图片的函数
+
                 productsDiv.innerHTML += `
                     <div class="product-item">
+                        <img src="${productImageUrl}" alt="${productName} 图片">
                         <label>
                             <input type="checkbox" value="${productName}|${dosage}|${efficacy}">
                             <strong>${productName}</strong>（${dosage}）<br>
@@ -95,6 +105,37 @@
             });
         }
     });
+
+    function getProductImageUrl(productName) {
+        // 根据产品名称返回对应的图片 URL，现在这些都是乱找的
+        const images = {
+            '维生素C': 'https://media.istockphoto.com/id/494674797/zh/%E7%85%A7%E7%89%87/pill.jpg?s=612x612&w=0&k=20&c=S_FmhZx5oXSmZLZZns0I79YMJ6NRHbQ9tKm2dq8d6hI=',
+            '传明酸': 'https://t3.ftcdn.net/jpg/09/04/34/18/360_F_904341841_WsVdONCSHzwRUzs85WY5PmuF6hQHgFrO.jpg',
+            '维生素E': 'https://media.istockphoto.com/id/494674797/zh/%E7%85%A7%E7%89%87/pill.jpg?s=612x612&w=0&k=20&c=S_FmhZx5oXSmZLZZns0I79YMJ6NRHbQ9tKm2dq8d6hI=',
+            '胶原蛋白肽': 'https://t3.ftcdn.net/jpg/09/04/34/18/360_F_904341841_WsVdONCSHzwRUzs85WY5PmuF6hQHgFrO.jpg',
+            '硫辛酸': 'https://t3.ftcdn.net/jpg/09/04/34/18/360_F_904341841_WsVdONCSHzwRUzs85WY5PmuF6hQHgFrO.jpg',
+            '葡萄籽提取物': 'https://t3.ftcdn.net/jpg/08/70/50/16/360_F_870501643_48hDEn9u70Y2ItNLrzhhM87QQPREZQBz.jpg',
+            '左旋肉碱': 'https://t3.ftcdn.net/jpg/08/70/50/16/360_F_870501643_48hDEn9u70Y2ItNLrzhhM87QQPREZQBz.jpg',
+            '共轭亚油酸（CLA）': 'https://t3.ftcdn.net/jpg/08/70/50/16/360_F_870501643_48hDEn9u70Y2ItNLrzhhM87QQPREZQBz.jpg',
+            '绿茶提取物胶囊': 'https://t3.ftcdn.net/jpg/08/70/50/16/360_F_870501643_48hDEn9u70Y2ItNLrzhhM87QQPREZQBz.jpg',
+            '纤维补充剂': 'https://t3.ftcdn.net/jpg/08/70/50/16/360_F_870501643_48hDEn9u70Y2ItNLrzhhM87QQPREZQBz.jpg',
+            '益生菌粉': 'https://media.istockphoto.com/id/185262088/zh/%E7%85%A7%E7%89%87/capsule.jpg?s=612x612&w=0&k=20&c=Jy5opxEIo8rwSB01P633SqTCDvzC__GXcu5l8jJGuCs=',
+            '辅酶Q10': 'https://media.istockphoto.com/id/185262088/zh/%E7%85%A7%E7%89%87/capsule.jpg?s=612x612&w=0&k=20&c=Jy5opxEIo8rwSB01P633SqTCDvzC__GXcu5l8jJGuCs=',
+            'Omega-3鱼油': 'https://media.istockphoto.com/id/494729880/photo/fish-oil-supplement-capsule-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=HSQdNXxn6Uc1XjakPuib5jmZMSScr54E-C4ovK4fE3Q=',
+            '透明质酸': 'https://media.istockphoto.com/id/471788537/zh/%E7%85%A7%E7%89%87/large-blank-pill-i.jpg?s=612x612&w=0&k=20&c=7WsY9s7zNX9g7gnd3rAKOT7mAXgT1b5gG_Zih3PGwbs=',
+            '视黄醇': 'https://media.istockphoto.com/id/185262088/zh/%E7%85%A7%E7%89%87/capsule.jpg?s=612x612&w=0&k=20&c=Jy5opxEIo8rwSB01P633SqTCDvzC__GXcu5l8jJGuCs=',
+            '谷胱甘肽': 'https://media.istockphoto.com/id/471788537/zh/%E7%85%A7%E7%89%87/large-blank-pill-i.jpg?s=612x612&w=0&k=20&c=7WsY9s7zNX9g7gnd3rAKOT7mAXgT1b5gG_Zih3PGwbs=',
+            '钙镁锌+D3': 'https://media.istockphoto.com/id/471788537/zh/%E7%85%A7%E7%89%87/large-blank-pill-i.jpg?s=612x612&w=0&k=20&c=7WsY9s7zNX9g7gnd3rAKOT7mAXgT1b5gG_Zih3PGwbs=',
+            '月见草油': 'https://media.istockphoto.com/id/494729880/photo/fish-oil-supplement-capsule-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=HSQdNXxn6Uc1XjakPuib5jmZMSScr54E-C4ovK4fE3Q=',
+            '蔓越莓胶囊': 'https://media.istockphoto.com/id/1484742848/zh/%E7%85%A7%E7%89%87/one-red-pill-capsule-analgesic-painkiller-drug-medicine-gel-capsule-on-white-background.jpg?s=612x612&w=0&k=20&c=Ah-bGnX_Oze6nEO3X-n48VWOwBoyhZ3XHHH1Sgw-XxA=',
+            '祛湿丸': 'https://media.istockphoto.com/id/471788537/zh/%E7%85%A7%E7%89%87/large-blank-pill-i.jpg?s=612x612&w=0&k=20&c=7WsY9s7zNX9g7gnd3rAKOT7mAXgT1b5gG_Zih3PGwbs=',
+            '当归补血丸': 'https://media.istockphoto.com/id/1484742848/zh/%E7%85%A7%E7%89%87/one-red-pill-capsule-analgesic-painkiller-drug-medicine-gel-capsule-on-white-background.jpg?s=612x612&w=0&k=20&c=Ah-bGnX_Oze6nEO3X-n48VWOwBoyhZ3XHHH1Sgw-XxA=',
+            '丹参片': 'https://media.istockphoto.com/id/494674797/zh/%E7%85%A7%E7%89%87/pill.jpg?s=612x612&w=0&k=20&c=S_FmhZx5oXSmZLZZns0I79YMJ6NRHbQ9tKm2dq8d6hI=',
+            '黄芪提取物': 'https://media.istockphoto.com/id/185262088/zh/%E7%85%A7%E7%89%87/capsule.jpg?s=612x612&w=0&k=20&c=Jy5opxEIo8rwSB01P633SqTCDvzC__GXcu5l8jJGuCs='
+        };
+
+        return images[productName] || 'https://example.com/default.jpg'; // 默认图片
+    }
 
     function confirmPurchase() {
         const selectedProducts = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
