@@ -15,3 +15,12 @@ run python app.py 点击Running on的link打开网页
 现有bug：
 
 1. gpt output slicing有的时候不对，保证每次output的格式可以准确fit到box里
+
+
+建议：
+
+1. 同一用户输入相同input结果应统一
+2. 用户不可取消选择某药品
+3. AI声线定制
+4. 用户协议
+5. 点击方向跳转
